@@ -1,0 +1,57 @@
+<html>
+	<head>
+		<title>Reader</title>
+		<script src="jquery-3.2.1.min.js"></script>
+		<script src="FileSaver.min.js"></script>
+		<script src="main.js"></script>
+		<style>
+			body {
+				background-color: pink;
+			}
+			button, input {
+				position: fixed;
+			}
+			#next {
+				margin-top: 30px;
+				margin-left: 60px;
+			}
+			#prev {
+				margin-top: 30px;
+			}
+			#load {
+				margin-top: 60px;
+			}
+			#startPage {
+				margin-top: 60px;
+				margin-left: 60px;
+			}
+			#goto {
+				margin-top: 90px;
+			}
+			#gotoPage {
+				margin-top: 90px;
+				margin-left: 60px;
+			}
+			#widthClip {
+				margin-top: 120px;
+			}
+			#maxImage {
+				margin-left: 60px;
+			}
+			
+		</style>
+	</head>
+	<body>
+		<canvas id="canvas">
+		</canvas>
+		<button id="save" >Save</button>
+		<input id="maxImage" value="1"></input>
+		<button id="next" >Next</button>
+		<button id="prev" >Prev</button>
+		<button id="load" >Load</button>
+		<input id="startPage" value="1"></input>
+		<button id="goto" >Goto</button>
+		<input id="gotoPage" value="1"></input>
+		<input id="widthClip" value="0"></input>
+	</body>
+</html>
