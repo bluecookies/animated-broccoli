@@ -8,8 +8,11 @@
 			body {
 				background-color: pink;
 			}
+			div {
+				background-color: red;
+			}
 			button, input {
-				position: fixed;
+				position: absolute;
 			}
 			#next {
 				margin-top: 30px;
@@ -38,20 +41,26 @@
 			#maxImage {
 				margin-left: 60px;
 			}
+			#path {
+				margin-top: 150px;
+			}
 			
 		</style>
 	</head>
 	<body>
 		<canvas id="canvas">
 		</canvas>
-		<button id="save" >Save</button>
-		<input id="maxImage" value="1"></input>
-		<button id="next" >Next</button>
-		<button id="prev" >Prev</button>
-		<button id="load" >Load</button>
-		<input id="startPage" value="1"></input>
-		<button id="goto" >Goto</button>
-		<input id="gotoPage" value="1"></input>
-		<input id="widthClip" value="0"></input>
+		<div id="control">
+			<button id="save" >Save</button>
+			<input id="maxImage" value="1"></input>
+			<button id="next" >Next</button>
+			<button id="prev" >Prev</button>
+			<button id="load" >Load</button>
+			<input id="startPage" value="1"></input>
+			<button id="goto" >Goto</button>
+			<input id="gotoPage" value="0"></input>
+			<input id="widthClip" value="0"></input>
+			<input id="path" value="images"></input>
+		</div>
 	</body>
 </html>
