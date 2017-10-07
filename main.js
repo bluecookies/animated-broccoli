@@ -13,6 +13,7 @@ $(document).ready(function() {
 	var charSum = 1937;
 	
 	var img = new Image();
+	var path = "images";
 	var maxImage = 1;
 	var imageIndex = startIndex = 1;
 	var saving = false;
@@ -23,7 +24,7 @@ $(document).ready(function() {
 			
 			var pattern = charSum;
 			if (imageIndex == startIndex) {
-				pattern += 543;
+				pattern += 543;	//"cover"
 			} else {
 				var str = String(imageIndex).padStart(3, 0);
 				for (var i = 0; i < str.length; i++) {
@@ -39,7 +40,7 @@ $(document).ready(function() {
 					saveAs(blob, imageIndex + ".png");
 					imageIndex++;
 					if (imageIndex <= maxImage)
-						img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+						img.src = getImagePath(path, imageIndex, startIndex);
 					else
 						saving = false;
 				});
@@ -49,29 +50,41 @@ $(document).ready(function() {
 	$("#save").on("click", function() {
 		saving = true;
 		maxImage = $("#maxImage").val();
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		img.src = getImagePath(path, imageIndex, startIndex);
 	});
 	$("#next").on("click", function() {
 		imageIndex++;
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		$("#gotoPage").val(imageIndex - startIndex);
+		img.src = getImagePath(path, imageIndex, startIndex);
 	});
 	$("#prev").on("click", function() {
 		imageIndex--;
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		$("#gotoPage").val(imageIndex - startIndex);
+		img.src = getImagePath(path, imageIndex, startIndex);
 	});
 	$("#load").on("click", function() {
-		imageIndex = startIndex = $("#startPage").val();
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		imageIndex = startIndex = $("#startPage").val() - 1;
+		img.src = getImagePath(path, imageIndex, startIndex);
 	});
 	$("#goto").on("click", function() {
-		imageIndex = $("#gotoPage").val();
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		imageIndex = parseInt($("#gotoPage").val(), 10) + startIndex;
+		img.src = getImagePath(path, imageIndex, startIndex);
 	});
 	$("#widthClip").on("change", function() {
 		canvas.width = img.width - $("#widthClip").val(); //event.result?
-		img.src = "./images/" + String(imageIndex).padStart(3, 0) + ".jpeg";
+		img.src = getImagePath(path, imageIndex, startIndex);
+	});
+	$("#path").on("change", function() {
+		path = $("#path").val();
 	});
 });
+
+function getImagePath(path, imgIndex, startIndex) {
+	if (imgIndex > startIndex)
+		return "./" + path + "/" + String(imgIndex).padStart(3, 0) + ".jpeg";
+	else if (imgIndex == startIndex)
+		return "./" + path + "/cover.jpeg";
+}
 
 function drawShuffledImage(ctx, img, pattern) {
 	//ctx.drawImage(img, 0, 0);
